@@ -6,7 +6,7 @@ const saltRounds = 10;
 var jwt = require('jsonwebtoken');
 
 /* GET users listing. */
-router.get('/', (req, res, next) => {
+router.get('/list', (req, res, next) => {
   User.find({}).exec().then(result => {
     console.log('keluar');
     res.status(200).json(result)
@@ -92,7 +92,7 @@ router.post('/login', (req, res, next) => {
               response.message = "Error Found!"
               res.status(401).json(response)
             } else {
-              res.status(201).json(response)
+              res.status(200).json(response)
             }
           }))
         } else {
@@ -104,6 +104,9 @@ router.post('/login', (req, res, next) => {
       response.message = 'Auth Failed'
       res.status(401).json(response)
     }
+  }).catch(err => {
+    response.message = 'Email or Password not valid'
+    res.json(response)
   })
 })
 
