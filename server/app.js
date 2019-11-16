@@ -9,7 +9,8 @@ mongoose.connect('mongodb://localhost:27017/cmsdb', { useNewUrlParser: true, use
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-var dataRouter = require('./routes/data')
+var dataRouter = require('./routes/data');
+var datadateRouter = require('./routes/datadate');
 
 var app = express();
 
@@ -22,7 +23,8 @@ app.use(cors());
 
 app.use('/', indexRouter);
 app.use('/api/users', usersRouter);
-app.use('/api/data', dataRouter)
+app.use('/api/data', dataRouter);
+app.use('/api/datadate', datadateRouter);
 
 var debug = require('debug')('server:server');
 var http = require('http');
