@@ -7,7 +7,7 @@ router.get('/', (req, res, next) => {
     Data.find().then(data => {
         res.json(data)
     }).catch(err => {
-        res.status(400).json(response);
+        res.status(400).json(err);
     })
 })
 
@@ -35,7 +35,6 @@ router.post('/', (req, res, next) => {
             letter: '',
             frequency: null
         }
-
     }
     if (letter != undefined || frequency != undefined) {
         const data = new Data({
@@ -51,6 +50,7 @@ router.post('/', (req, res, next) => {
             res.status(201).json(response)
         }).catch(err => {
             response.message = 'letter and frequency cannot empty'
+            res.status(400).json(response)
         })
     } else {
         response.message = 'Add Data cant be empty'
@@ -61,6 +61,9 @@ router.post('/', (req, res, next) => {
 // Browse Data
 router.post('/search', (req, res, next) => {
     let { letter, frequency } = req.body;
+    let response = {
+        message: ''
+    }
     if (letter != undefined || frequency.toString() != 'NaN') {
         let filterData = {};
         letter ? filterData.letter = { $regex: letter, $options: 'i' } : undefined;
@@ -90,13 +93,16 @@ router.put('/:id', (req, res, next) => {
         frequency ? updatedData.frequency = frequency : '';
 
         Data.findByIdAndUpdate(id, updatedData).exec().then(data => {
-            console.log(data);
+            // console.log(data);
             response.success = true;
             response.message = 'Success update Data';
             response.data._id = id;
             response.data.letter = letter || data.letter;
             response.data.frequency = frequency || data.frequency;
             res.status(201).json(response);
+        }).catch(err => {
+            response.message = 'data cannot empty'
+            res.status(400).json(response)
         })
     } else {
         response.message = 'Data cant be empty'
