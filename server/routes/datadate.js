@@ -66,7 +66,7 @@ router.post('/search', (req, res, next) => {
 });
 
 // EDIT DATA DATE
-router.post('/:id', (req, res, next) => {
+router.put('/:id', (req, res, next) => {
     let { letter, frequency } = req.body;
     let id = req.params.id;
     let response = {
