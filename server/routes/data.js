@@ -98,7 +98,7 @@ router.put('/:id', (req, res, next) => {
             response.message = 'Success update Data';
             response.data._id = id;
             response.data.letter = letter || data.letter;
-            response.data.frequency = frequency || data.frequency;
+            response.data.frequency = Number(frequency) || data.frequency;
             res.status(201).json(response);
         }).catch(err => {
             response.message = 'data cannot empty'
