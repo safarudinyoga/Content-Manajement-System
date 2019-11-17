@@ -1,11 +1,44 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
-  </body>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <% include ./partials/header %>
+  <!-- <link rel="stylesheet" href="/stylesheets/cover.css"> -->
+</head>
+
+<body>
+
+  <div class="container d-flex w-100 h-100 my-5 flex-column mx-auto">
+    <!-- space header -->
+    <header class="masthead mb-auto">
+    </header>
+
+    <main role="main" class="inner cover dashboard-main">
+      <div class="card">
+        <h5 class="card-header"><i class="fas fa-bookmark"></i> Welcome to Dashboard</h5>
+        <div class="card-body">
+          <a href="/line" role="button" class="card-title btn btn-primary btn-block"><i
+              class="fas fa-chart-line"></i><br />Line</a>
+          <a href="/pie" role="button" class="card-title btn btn-secondary btn-block"><i
+              class="fas fa-chart-pie"></i><br />Pie</a>
+          <a href="/bar" role="button" class="card-title btn btn-warning btn-block"><i
+              class="fas fa-chart-bar"></i><br />Bar</a>
+          <a href="/map" role="button" class="card-title btn btn-success btn-block"><i
+              class="fas fa-map-marked-alt"></i><br />Maps</a>
+          <a href="/login" role="button" class="card-title btn btn-info btn-block"><i class="fas fa-user"></i> Admin
+            Panel</a>
+        </div>
+      </div>
+      <footer class="mastfoot mt-auto">
+      </footer>
+
+    </main>
+  </div>
+  <% include ./partials/footer %>
+</body>
+
 </html>
