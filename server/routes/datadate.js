@@ -58,7 +58,10 @@ router.post('/search', (req, res, next) => {
 
         Datadate.find(filterDataDate).then(data => {
             res.status(200).json(data)
-        }).catch(err => res.status(400).json(err))
+        }).catch(err => {
+            response.message = 'data not exist'
+            res.status(400).json(response)
+        })
     } else {
         response.message = 'Search Data cant be empty'
         res.status(400).json(response)
@@ -88,7 +91,7 @@ router.put('/:id', (req, res, next) => {
             response.message = 'data have been updated';
             response.data._id = id;
             response.data.letter = letter || data.letter;
-            response.data.frequency = frequency || data.frequency;
+            response.data.frequency = Number(frequency) || data.frequency;
             res.status(201).json(response);
         }).catch(err => {
             response.message = 'data cannot empty';
