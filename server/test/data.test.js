@@ -68,6 +68,28 @@ describe('data', function () {
         })
     })
 
+    // ADD DATA
+    it('should add data with method POST', function (done) {
+        chai.request(server).post('/api/data/').send({
+            letter: 'A',
+            frequency: 1.1
+        }).end(function (err, res) {
+            // console.log(res.body);
+            res.should.have.status(201);
+            res.body.should.be.a('object');
+            res.body.should.have.property('success');
+            res.body.should.have.property('message');
+            res.body.should.have.property('data');
+            res.body.data.should.have.property('_id');
+            res.body.data.should.have.property('letter');
+            res.body.data.should.have.property('frequency');
+            res.body.success.should.equal(true)
+            res.body.data.letter.should.equal('A');
+            res.body.data.frequency.should.equal(1.1);
+            done();
+        })
+    })
+
     // EDIT DATA
     it('Should return edited data with method PUT', function (done) {
         chai.request(server).post('/api/data/search').send({
