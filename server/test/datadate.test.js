@@ -94,7 +94,7 @@ describe('datadate', function () {
             letter: '27-12-31',
             frequency: 1.1
         }).end(function (err, res) {
-            console.log(res.body[0]._id);
+            // console.log(res.body[0]._id);
             chai.request(server).put(`/api/datadate/${res.body[0]._id}`).send({
                 letter: '27-12-30',
                 frequency: 1.2
@@ -145,8 +145,7 @@ describe('datadate', function () {
             letter: '27-12-31',
             frequency: 1.1
         }).end(function (err, res) {
-            console.log(res.body[0]);
-
+            // console.log(res.body[0]);
             chai.request(server).get(`/api/datadate/${res.body[0]._id}`).end(function (err, response) {
                 response.should.have.status(201);
                 response.body.should.be.a('object');
